@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 const Planet = dynamic(() => import("./components/Planet"), { ssr: false });
 
-// ಇಲ್ಲಿ 'as const' ಸೇರಿಸಲಾಗಿದೆ
+// TypeScript Fix: 'as const' ಸೇರಿಸಲಾಗಿದೆ
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
@@ -15,9 +15,6 @@ const fadeUp = {
     transition: { duration: 0.6, ease: "easeOut" as const } 
   }
 };
-
-export default function Home() {
-  // ... ಉಳಿದ ಕೋಡ್ ಹಾಗೆಯೇ ಇರಲಿ
 
 export default function Home() {
   return (
@@ -33,7 +30,6 @@ export default function Home() {
         {/* ========================================= */}
         <section id="home" className="min-h-[85vh] flex flex-col items-center justify-center w-full pt-20 pb-10 px-4">
           
-          {/* Main Content Container */}
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center">
             
             {/* 1. Profile Image & Notification Badge */}
@@ -43,8 +39,6 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="relative flex flex-col items-center mb-8 md:mb-10 -mt-12 md:-mt-20"
             >
-              
-              {/* === NOTIFICATION BADGE === */}
               <div className="mb-4 flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 backdrop-blur-md z-20 shadow-[0_0_20px_rgba(34,197,94,0.15)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -53,25 +47,20 @@ export default function Home() {
                 <span className="text-[10px] sm:text-xs font-medium text-green-400 uppercase tracking-widest">Available for new opportunities</span>
               </div>
 
-              {/* Image Container */}
               <div className="relative w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72">
-                {/* Glowing Background Effect */}
                 <div className="absolute inset-0 bg-blue-500 rounded-full blur-[80px] opacity-30 z-0"></div>
-                
                 <div className="relative w-full h-full z-10 rounded-full overflow-hidden border-2 border-blue-500/20 bg-[#0a1128]">
                   <img 
                     src="/sadik.png" 
                     alt="Muhammad Sadik P" 
                     className="w-full h-full object-cover object-top"
-                    style={{ 
-                      filter: "contrast(1.1) brightness(1.05)",
-                    }}
+                    style={{ filter: "contrast(1.1) brightness(1.05)" }}
                   />
                 </div>
               </div>
             </motion.div>
 
-            {/* 2. Name (Increased Size & Standard Alignment) */}
+            {/* 2. Name */}
             <motion.h1 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
@@ -84,7 +73,7 @@ export default function Home() {
               </span>
             </motion.h1>
 
-                           {/* 3. Subtitle (Smaller Size) */}
+            {/* 3. Subtitle */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
@@ -170,7 +159,6 @@ export default function Home() {
           </div>
           <div className="space-y-5 w-full">
             
-            {/* 1. Skillon English Academy */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3 gap-2">
                 <h3 className="text-lg sm:text-xl font-bold text-white">Marketing Team Member</h3>
@@ -193,7 +181,6 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* 2. Growzy Digital (Freelance Agency) */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3 gap-2">
                 <h3 className="text-lg sm:text-xl font-bold text-white">Founder & Freelance Digital Marketer</h3>
@@ -227,7 +214,6 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
             
-            {/* 1. Paid Media */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex items-center gap-3 mb-5">
                 <Zap className="text-blue-500" size={24} />
@@ -240,7 +226,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 2. Performance Marketing */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex items-center gap-3 mb-5">
                 <TrendingUp className="text-blue-500" size={24} />
@@ -253,7 +238,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 3. Research & Analytics */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex items-center gap-3 mb-5">
                 <BarChart3 className="text-blue-500" size={24} />
@@ -266,7 +250,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 4. Tracking & Reporting */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex items-center gap-3 mb-5">
                 <MonitorSmartphone className="text-blue-500" size={24} />
@@ -279,7 +262,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 5. Research Tools */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex items-center gap-3 mb-5">
                 <Globe className="text-blue-500" size={24} />
@@ -292,7 +274,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 6. AI Tools */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full">
               <div className="flex items-center gap-3 mb-5">
                 <Rocket className="text-blue-500" size={24} />
@@ -305,7 +286,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 7. Web & Design */}
             <div className="glass-card p-6 sm:p-8 rounded-3xl w-full md:col-span-2 lg:col-span-3">
               <div className="flex items-center gap-3 mb-5">
                 <Code2 className="text-blue-500" size={24} />
@@ -320,39 +300,32 @@ export default function Home() {
 
           </div>
         </motion.section>
+
         {/* ========================================= */}
         {/* SECTION 5: 3D CREATIVE (Robot & Icons) */}
         {/* ========================================= */}
         <section className="relative w-full py-10 flex flex-col items-center justify-center overflow-hidden border-t border-white/5 mt-20">
-           
-           {/* Text removed, only the 3D Canvas remains */}
            <div className="relative w-full max-w-4xl h-[450px] md:h-[550px] flex items-center justify-center">
-              
-              {/* Static Icons */}
               <div className="absolute top-8 left-8 md:top-12 md:left-16 z-20 animate-bounce-slow">
                 <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_0_30px_rgba(59,130,246,0.3)]">
                   <SiGoogleads className="text-blue-400 text-3xl md:text-5xl" />
                 </div>
               </div>
-
               <div className="absolute bottom-12 right-8 md:bottom-16 md:right-16 z-20 animate-pulse-slow">
                 <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-[0_0_30px_rgba(6,104,225,0.3)]">
                   <SiMeta className="text-blue-500 text-3xl md:text-5xl" />
                 </div>
               </div>
-
               <div className="absolute top-1/2 -right-2 md:top-1/3 md:right-4 z-20 animate-bounce-slow">
                 <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-[0_0_30px_rgba(34,197,94,0.3)]">
                   <BarChart3 className="text-green-400 text-3xl md:text-5xl" />
                 </div>
               </div>
-
               <div className="absolute bottom-1/4 left-4 md:bottom-1/3 md:left-8 z-20 animate-pulse-slow">
                 <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-[0_0_30px_rgba(139,92,246,0.3)]">
                   <TrendingUp className="text-purple-400 text-3xl md:text-5xl" />
                 </div>
               </div>
-
               <Planet />
            </div>
         </section>
