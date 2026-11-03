@@ -25,24 +25,23 @@ export default function Home() {
 
       <main className="max-w-6xl mx-auto px-5 sm:px-6 pt-20 pb-0 w-full relative z-10">
         
-               {/* ========================================= */}
-        {/* SECTION 1: HOME (HERO) */}
+                        {/* ========================================= */}
+        {/* SECTION 1: HOME (HERO) - Left/Right Layout */}
         {/* ========================================= */}
-        <section id="home" className="min-h-[85vh] flex flex-col items-center justify-center w-full pt-24 md:pt-32 pb-10 px-4">
+        <section id="home" className="min-h-screen flex items-center justify-center w-full pt-24 pb-10 px-4">
           
-          {/* Main Content Container */}
-          <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center">
+          <div className="max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
             
-            {/* 1. Profile Image & Notification Badge */}
+            {/* === RIGHT SIDE (Text Content) === */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              transition={{ duration: 0.5 }}
-              className="relative flex flex-col items-center mb-8 md:mb-12 -mt-8 md:-mt-16"
+              initial={{ opacity: 0, x: 20 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.6 }}
+              className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left"
             >
               
-              {/* === NOTIFICATION BADGE === */}
-              <div className="mb-6 flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 backdrop-blur-md z-20 shadow-[0_0_20px_rgba(34,197,94,0.15)]">
+              {/* Notification Badge */}
+              <div className="mb-6 flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -50,8 +49,38 @@ export default function Home() {
                 <span className="text-[10px] sm:text-xs font-medium text-green-400 uppercase tracking-widest">Available for new opportunities</span>
               </div>
 
-              {/* Image Container - Sized for Desktop */}
-              <div className="relative w-48 h-48 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-72 lg:h-72">
+              {/* Name */}
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 text-white leading-[1.1]">
+                Muhammad <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
+                  Sadik P.
+                </span>
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed font-medium max-w-lg mb-10">
+                A <span className="text-blue-500 font-bold">Performance Marketer</span> focused on scaling businesses through data-driven ad campaigns and high-converting landing pages.
+              </p>
+              
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 w-full sm:w-auto">
+                <a href="#projects" className="w-full sm:w-auto px-8 py-4 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+                  View My Work <ArrowUpRight size={20} />
+                </a>
+                <a href="#contact" className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 text-white font-bold hover:bg-white/5 transition-all flex items-center justify-center">
+                  Contact Me
+                </a>
+              </div>
+            </motion.div>
+
+            {/* === LEFT SIDE (Image) === */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.6 }}
+              className="w-full md:w-1/2 flex justify-center md:justify-end"
+            >
+              <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Glowing Background Effect */}
                 <div className="absolute inset-0 bg-blue-500 rounded-full blur-[80px] opacity-30 z-0"></div>
                 
@@ -68,49 +97,8 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* 2. Name - Perfectly Sized for Desktop */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-[3.5rem] leading-[1.1] sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-6 text-white"
-            >
-              Muhammad <br className="md:hidden" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
-                Sadik P.
-              </span>
-            </motion.h1>
-
-            {/* 3. Subtitle - Centered & Balanced */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-col items-center justify-center mb-10 md:mb-12 max-w-2xl mx-auto text-center px-4"
-            >
-              <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed font-medium">
-                A <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-bold">Performance Marketer</span> focused on scaling businesses through data-driven ad campaigns and high-converting landing pages.
-              </p>
-            </motion.div>
-            
-            {/* 4. Buttons - Side by Side on Desktop */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto"
-            >
-              <a href="#projects" className="w-full sm:w-auto px-8 py-4 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(37,99,235,0.4)]">
-                View My Work <ArrowUpRight size={20} />
-              </a>
-              <a href="#contact" className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 text-white font-bold hover:bg-white/5 transition-all flex items-center justify-center">
-                Contact Me
-              </a>
-            </motion.div>
-
           </div>
         </section>
-
         {/* ========================================= */}
         {/* SECTION 2: ABOUT ME */}
         {/* ========================================= */}
