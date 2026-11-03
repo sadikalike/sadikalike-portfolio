@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 
-// "Home" ಅನ್ನು ಇಲ್ಲಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ
 const links = ["About", "Experience", "Skills", "Projects", "Contact"];
 
 const socials = [
@@ -36,7 +35,7 @@ export default function Navbar() {
       },
       { rootMargin: "-45% 0px -50% 0px" }
     );
-    // ಈಗ links ನಲ್ಲಿ Home ಇಲ್ಲ, ಆದರೆ ನಾವು home ಸೆಕ್ಷನ್ ಅನ್ನು ಸಹ ಗಮನಿಸುತ್ತೇವೆ
+    
     const sections = ["home", ...links.map((l) => l.toLowerCase())];
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -56,13 +55,10 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between h-14 pl-4 pr-1.5 md:pl-5 md:pr-2 gap-2">
           
-          {/* Logo: Name Size Increased Here */}
+          {/* Logo: Full Name on both Mobile and Desktop */}
           <a href="/#home" className="font-bold tracking-tighter text-white whitespace-nowrap">
-            <span className="md:hidden text-[18px]">
+            <span className="text-[18px] md:text-xl lg:text-2xl">
               Muhammad Sadik P<span className="text-blue-500">.</span>
-            </span>
-            <span className="hidden md:inline text-2xl">
-              SADIK<span className="text-blue-500">.</span>
             </span>
           </a>
 
