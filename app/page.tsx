@@ -4,13 +4,20 @@ import { ArrowUpRight, Mail, Phone, MonitorSmartphone, Rocket, TrendingUp, Code2
 import { SiInstagram, SiGoogleads, SiMeta } from "react-icons/si";
 import dynamic from "next/dynamic";
 
-// SSR (Server Side Rendering) ನಲ್ಲಿ Three.js ಕೆಲಸ ಮಾಡುವುದಿಲ್ಲ, ಹಾಗಾಗಿ dynamic import ಬಳಸುತ್ತಿದ್ದೇವೆ
 const Planet = dynamic(() => import("./components/Planet"), { ssr: false });
 
+// ಇಲ್ಲಿ 'as const' ಸೇರಿಸಲಾಗಿದೆ
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" as const } 
+  }
 };
+
+export default function Home() {
+  // ... ಉಳಿದ ಕೋಡ್ ಹಾಗೆಯೇ ಇರಲಿ
 
 export default function Home() {
   return (
