@@ -8,6 +8,33 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
 };
 
+// ಇಲ್ಲಿ Math.random() ಬಳಸುತ್ತಿಲ್ಲ. ಬದಲಿಗೆ ಸ್ಥಿರವಾದ ಮೌಲ್ಯಗಳನ್ನು ಇಟ್ಟಿದ್ದೇವೆ.
+const staticBoxes = [
+  { size: 10, left: 10, top: 20, duration: 12 },
+  { size: 15, left: 25, top: 60, duration: 15 },
+  { size: 8, left: 40, top: 30, duration: 10 },
+  { size: 20, left: 55, top: 80, duration: 18 },
+  { size: 12, left: 70, top: 15, duration: 14 },
+  { size: 6, left: 85, top: 50, duration: 11 },
+  { size: 18, left: 15, top: 75, duration: 16 },
+  { size: 14, left: 35, top: 10, duration: 13 },
+  { size: 9, left: 60, top: 40, duration: 9 },
+  { size: 16, left: 80, top: 70, duration: 17 },
+];
+
+const staticStars = [
+  { left: 5, top: 15, duration: 4 },
+  { left: 20, top: 45, duration: 3 },
+  { left: 35, top: 75, duration: 5 },
+  { left: 50, top: 25, duration: 2 },
+  { left: 65, top: 65, duration: 6 },
+  { left: 80, top: 10, duration: 3.5 },
+  { left: 95, top: 55, duration: 4.5 },
+  { left: 15, top: 90, duration: 5.5 },
+  { left: 45, top: 50, duration: 2.5 },
+  { left: 75, top: 85, duration: 4.2 },
+];
+
 export default function Experience() {
   return (
     <motion.section 
@@ -23,63 +50,49 @@ export default function Experience() {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         
         {/* 1. ಚಿಕ್ಕ ಚಿಕ್ಕ ತೇಲಾಡುವ ಬಾಕ್ಸ್‌ಗಳು (Small Floating Boxes) */}
-        {Array.from({ length: 15 }).map((_, i) => {
-          // ಬಾಕ್ಸ್‌ಗಳ ಸೈಜ್, ಸ್ಥಾನ ಮತ್ತು ವೇಗವನ್ನು ರಾಂಡಮ್ ಆಗಿ ಮಾಡುವುದು
-          const size = Math.random() * 15 + 5; 
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const duration = Math.random() * 10 + 10;
-          
-          return (
-            <motion.div
-              key={`box-${i}`}
-              animate={{ 
-                y: [0, -30, 0], 
-                rotate: [0, 90, 0],
-                opacity: [0.1, 0.3, 0.1]
-              }}
-              transition={{ 
-                duration: duration, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="absolute border border-blue-500/20 bg-blue-500/5 rounded-sm"
-              style={{ 
-                width: size, 
-                height: size, 
-                left: `${left}%`, 
-                top: `${top}%` 
-              }}
-            />
-          );
-        })}
+        {staticBoxes.map((el, i) => (
+          <motion.div
+            key={`box-${i}`}
+            animate={{ 
+              y: [0, -30, 0], 
+              rotate: [0, 90, 0],
+              opacity: [0.1, 0.3, 0.1]
+            }}
+            transition={{ 
+              duration: el.duration, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="absolute border border-blue-500/20 bg-blue-500/5 rounded-sm"
+            style={{ 
+              width: el.size, 
+              height: el.size, 
+              left: `${el.left}%`, 
+              top: `${el.top}%` 
+            }}
+          />
+        ))}
 
         {/* 2. ಆಕಾಶದಲ್ಲಿ ಮಿನುಗುವ ಬೆಳಕು (Sky Lights / Twinkling Stars) */}
-        {Array.from({ length: 20 }).map((_, i) => {
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const duration = Math.random() * 3 + 2;
-          
-          return (
-            <motion.div
-              key={`star-${i}`}
-              animate={{ 
-                opacity: [0, 1, 0],
-                scale: [0.5, 1.5, 0.5]
-              }}
-              transition={{ 
-                duration: duration, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"
-              style={{ 
-                left: `${left}%`, 
-                top: `${top}%` 
-              }}
-            />
-          );
-        })}
+        {staticStars.map((el, i) => (
+          <motion.div
+            key={`star-${i}`}
+            animate={{ 
+              opacity: [0, 1, 0],
+              scale: [0.5, 1.5, 0.5]
+            }}
+            transition={{ 
+              duration: el.duration, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="absolute w-1 h-1 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+            style={{ 
+              left: `${el.left}%`, 
+              top: `${el.top}%` 
+            }}
+          />
+        ))}
 
         {/* 3. ಬೆಳಕಿನ ರೇಖೆ (Glowing Line) - ಆಳ ಸೇರಿಸಲು */}
         <motion.div 
