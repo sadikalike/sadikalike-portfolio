@@ -8,6 +8,16 @@ LinkedIn: https://www.linkedin.com/in/-sadik-performance-marketer
 GitHub: https://github.com/sadikalike
 Instagram (Agency): https://www.instagram.com/growzy.digital
 
+Education:
+1. Bachelor of Computer Application (BCA) from Annamalai University (Distance Education, Karasagod, Kerala) | Aug 2021 - Oct 2024 | Grade: A
+2. Digital Marketing from Inspire Computer Education | Jan 2025 - Jul 2025 | Grade: A
+
+Certifications:
+AI Powered Performance Marketing Mastery from Entri Software Private Limited | Sep 2026 - Present
+- Advanced training in campaign strategy, funnel planning, audience targeting and conversion optimization.
+- Hands-on practice running paid ad campaigns across multiple advertising platforms.
+- In-depth study of market research, competitive analysis and consumer behavior.
+
 About:
 I am a Performance Marketer with a background in Web Development and Digital Marketing. I have hands-on experience in digital marketing, website development, and business promotion. My main interest is performance marketing, where I focus on understanding businesses, researching competitors, identifying target audiences, and planning advertising campaigns.
 
@@ -36,9 +46,6 @@ Marketing Knowledge:
 - Track everything using GA4 and Meta Pixel.
 
 Personal/Fun Facts:
-- Sadik is a friendly and approachable person.
-- He is passionate about learning new strategies and exploring opportunities.
-- He enjoys working with businesses to improve their online presence.
 - Sadik's brothers are Souhar, Shafeek, and Shaheem.
 - Sadik's cousins are Irfan, Irshad, Ihsan, Rafeek, and Shakeeb.
 - When asked about his best friend, he considers his close friends and family as his best friends.
@@ -47,42 +54,52 @@ Personal/Fun Facts:
 export function getAIResponse(userInput: string): string {
   const input = userInput.toLowerCase();
 
-  // 1. ಸಹೋದರರು (Brothers)
+  // Education
+  if (input.includes("education") || input.includes("study") || input.includes("college") || input.includes("degree") || input.includes("bca")) {
+    return "Sadik holds a Bachelor of Computer Application (BCA) from Annamalai University (Aug 2021 - Oct 2024) with Grade A, and a Digital Marketing certification from Inspire Computer Education (Jan 2025 - Jul 2025) with Grade A.";
+  }
+
+  // Certification
+  if (input.includes("certification") || input.includes("certificate") || input.includes("course")) {
+    return "Sadik has completed the 'AI Powered Performance Marketing Mastery' certification from Entri Software Private Limited (Sep 2026 - Present). It covers campaign strategy, funnel planning, audience targeting, and conversion optimization.";
+  }
+
+  // Brothers
   if (input.includes("brother") || input.includes("souhar") || input.includes("shafeek") || input.includes("shaheem")) {
     return "Sadik's brothers are Souhar, Shafeek, and Shaheem.";
   }
 
-  // 2. ಸೋದರಸಂಬಂಧಿಗಳು (Cousins)
+  // Cousins
   if (input.includes("cousin") || input.includes("irfan") || input.includes("irshad") || input.includes("ihsan") || input.includes("rafeek") || input.includes("shakeeb")) {
     return "Sadik's cousins are Irfan, Irshad, Ihsan, Rafeek, and Shakeeb.";
   }
 
-  // 3. ಹೆಸರು / ಪರಿಚಯ
+  // Name/About
   if (input.includes("who") || input.includes("about") || input.includes("sadik")) {
     return "Muhammad Sadik P is a Performance Marketer and Website Developer based in Mangaluru. He specializes in running data-driven ad campaigns (Meta/Google) and building high-converting landing pages using React and Next.js.";
   }
   
-  // 4. ಸ್ಕಿಲ್ಸ್
+  // Skills
   if (input.includes("skill") || input.includes("tools") || input.includes("what can")) {
     return "Sadik is skilled in Meta Ads, Google Ads, GA4, SEO, React, Next.js, and Tailwind CSS. He also uses AI tools like ChatGPT to improve his marketing strategies and tracking.";
   }
 
-  // 5. ಅನುಭವ
+  // Experience
   if (input.includes("experience") || input.includes("work") || input.includes("job")) {
     return "He is currently a Marketing Team Member at Skillon English Academy and the Founder of Growzy Digital (a freelance agency). He has handled end-to-end marketing and web development for clients like Subhamastu Cafe and Malnad Interiors.";
   }
 
-  // 6. ಪ್ರಾಜೆಕ್ಟ್ಸ್
+  // Projects
   if (input.includes("project") || input.includes("portfolio") || input.includes("client")) {
     return "His featured projects include Subhamastu Cafe (franchise lead gen), Indrabhavya (real estate leads), Skillon Academy (education website), and Malnad Interiors (interior design ads).";
   }
 
-  // 7. ಸಂಪರ್ಕ
+  // Contact
   if (input.includes("hire") || input.includes("contact") || input.includes("email") || input.includes("phone")) {
     return "You can contact Sadik via email at sadikalike7@gmail.com or call him at +91 8217436350. He is currently available for freelance projects!";
   }
 
-  // 8. ಮಾರ್ಕೆಟಿಂಗ್ ಪ್ರಶ್ನೆಗಳು
+  // Marketing
   if (input.includes("marketing") || input.includes("ads") || input.includes("roas") || input.includes("cpa")) {
     return "For performance marketing, focus on identifying your target audience, researching competitors, and running A/B tests on Meta and Google Ads. Track your ROAS and CPA closely to optimize your budget!";
   }
@@ -91,11 +108,10 @@ export function getAIResponse(userInput: string): string {
     return "As a MERN stack developer, Sadik builds fast, scalable, and responsive web applications using React, Next.js, and Node.js. He ensures the website is optimized for conversions.";
   }
 
-  // 9. ಸ್ನೇಹಿತರು
+  // Best Friend
   if (input.includes("best friend") || input.includes("friend")) {
     return "Sadik considers his close friends and family as his best friends. He values relationships and is always there for the people he cares about!";
   }
 
-  // ಡೀಫಾಲ್ಟ್ ಉತ್ತರ
-  return "I'm Sadik's AI assistant. You can ask me about his skills, experience, projects, brothers, cousins, or general marketing doubts!";
+  return "I'm Sadik's AI assistant. You can ask me about his skills, experience, projects, education, certifications, brothers, cousins, or general marketing doubts!";
 }
