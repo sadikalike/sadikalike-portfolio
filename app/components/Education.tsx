@@ -7,6 +7,16 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
 };
 
+// ಇಲ್ಲಿ Math.random() ಬಳಸುತ್ತಿಲ್ಲ. ಬದಲಿಗೆ ಸ್ಥಿರವಾದ ಮೌಲ್ಯಗಳನ್ನು ಇಟ್ಟಿದ್ದೇವೆ.
+const floatingBooks = [
+  { size: 30, left: 10, top: 20, duration: 12, rotate: 15 },
+  { size: 50, left: 25, top: 60, duration: 15, rotate: 45 },
+  { size: 40, left: 40, top: 30, duration: 10, rotate: 75 },
+  { size: 60, left: 55, top: 80, duration: 18, rotate: 20 },
+  { size: 35, left: 70, top: 15, duration: 14, rotate: 60 },
+  { size: 45, left: 85, top: 50, duration: 16, rotate: 30 },
+];
+
 export default function Education() {
   return (
     <motion.section 
@@ -31,38 +41,30 @@ export default function Education() {
         ></div>
 
         {/* 2. ತೇಲಾಡುವ 3D ಪುಸ್ತಕದ ಆಕಾರಗಳು (Floating Book Shapes) */}
-        {Array.from({ length: 6 }).map((_, i) => {
-          const size = Math.random() * 40 + 20; // 20px to 60px
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const duration = Math.random() * 10 + 10;
-          const rotate = Math.random() * 360;
-          
-          return (
-            <motion.div
-              key={`book-${i}`}
-              animate={{ 
-                y: [0, -40, 0],
-                rotate: [rotate, rotate + 45, rotate],
-                opacity: [0.05, 0.15, 0.05]
-              }}
-              transition={{ 
-                duration: duration, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: Math.random() * 2
-              }}
-              className="absolute border-2 border-blue-500/20 rounded-md backdrop-blur-sm"
-              style={{ 
-                width: size, 
-                height: size * 1.3, // ಪುಸ್ತಕದ ಆಕಾರ
-                left: `${left}%`, 
-                top: `${top}%`,
-                perspective: '1000px'
-              }}
-            />
-          );
-        })}
+        {floatingBooks.map((el, i) => (
+          <motion.div
+            key={`book-${i}`}
+            animate={{ 
+              y: [0, -40, 0],
+              rotate: [el.rotate, el.rotate + 45, el.rotate],
+              opacity: [0.05, 0.15, 0.05]
+            }}
+            transition={{ 
+              duration: el.duration, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: i * 0.5
+            }}
+            className="absolute border-2 border-blue-500/20 rounded-md backdrop-blur-sm"
+            style={{ 
+              width: el.size, 
+              height: el.size * 1.3, // ಪುಸ್ತಕದ ಆಕಾರ
+              left: `${el.left}%`, 
+              top: `${el.top}%`,
+              perspective: '1000px'
+            }}
+          />
+        ))}
 
         {/* 3. ಮಿನುಗುವ ನೀಲಿ ಬೆಳಕು (Glowing Blue Spot) */}
         <motion.div 
