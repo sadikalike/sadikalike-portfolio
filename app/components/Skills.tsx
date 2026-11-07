@@ -7,6 +7,18 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
 };
 
+// ಇಲ್ಲಿ Math.random() ಬಳಸುತ್ತಿಲ್ಲ. ಬದಲಿಗೆ ಸ್ಥಿರವಾದ ಮೌಲ್ಯಗಳನ್ನು ಇಟ್ಟಿದ್ದೇವೆ.
+const glowingOrbs = [
+  { size: 8, left: 10, top: 20, duration: 7, delay: 0 },
+  { size: 12, left: 25, top: 60, duration: 9, delay: 1 },
+  { size: 6, left: 40, top: 30, duration: 6, delay: 2 },
+  { size: 15, left: 55, top: 80, duration: 10, delay: 0.5 },
+  { size: 10, left: 70, top: 15, duration: 8, delay: 1.5 },
+  { size: 9, left: 85, top: 50, duration: 7.5, delay: 3 },
+  { size: 14, left: 15, top: 75, duration: 11, delay: 2.5 },
+  { size: 7, left: 60, top: 40, duration: 6.5, delay: 1.2 },
+];
+
 export default function Skills() {
   return (
     <motion.section 
@@ -42,35 +54,28 @@ export default function Skills() {
         />
 
         {/* 3. ತೇಲಾಡುವ ನಿಯಾನ್ ಬೆಳಕಿನ ಚುಕ್ಕಿಗಳು (Floating Glowing Orbs) */}
-        {Array.from({ length: 8 }).map((_, i) => {
-          const size = Math.random() * 10 + 5; // 5px to 15px
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const duration = Math.random() * 8 + 6;
-          
-          return (
-            <motion.div
-              key={`orb-${i}`}
-              animate={{ 
-                y: [0, -50, 0],
-                opacity: [0.2, 0.6, 0.2]
-              }}
-              transition={{ 
-                duration: duration, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: Math.random() * 2
-              }}
-              className="absolute rounded-full bg-blue-400 blur-[2px]"
-              style={{ 
-                width: size, 
-                height: size, 
-                left: `${left}%`, 
-                top: `${top}%` 
-              }}
-            />
-          );
-        })}
+        {glowingOrbs.map((el, i) => (
+          <motion.div
+            key={`orb-${i}`}
+            animate={{ 
+              y: [0, -50, 0],
+              opacity: [0.2, 0.6, 0.2]
+            }}
+            transition={{ 
+              duration: el.duration, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: el.delay
+            }}
+            className="absolute rounded-full bg-blue-400 blur-[2px]"
+            style={{ 
+              width: el.size, 
+              height: el.size, 
+              left: `${el.left}%`, 
+              top: `${el.top}%` 
+            }}
+          />
+        ))}
 
       </div>
 
