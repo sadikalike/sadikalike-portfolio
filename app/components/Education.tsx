@@ -9,69 +9,134 @@ const fadeUp = {
 
 export default function Education() {
   return (
-    <motion.section id="education" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="pt-24 border-t border-white/5 mt-20">
+    <motion.section 
+      id="education" 
+      initial="hidden" 
+      whileInView="visible" 
+      viewport={{ once: true }} 
+      variants={fadeUp} 
+      className="relative pt-24 border-t border-white/5 mt-20 overflow-hidden"
+    >
       
-      <div className="text-center mb-10">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">Education & Certifications</h2>
-        <p className="text-blue-500 font-medium text-lg">My Academic Background</p>
+      {/* === DIFFERENT 3D BACKGROUND (Floating Books & Dot Grid) === */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        
+        {/* 1. ಡಾಟ್ ಗ್ರಿಡ್ (Dot Grid) - ಆಳವನ್ನು ಸೇರಿಸಲು */}
+        <div 
+          className="absolute inset-0 opacity-[0.15]"
+          style={{
+            backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`,
+            backgroundSize: '30px 30px',
+          }}
+        ></div>
+
+        {/* 2. ತೇಲಾಡುವ 3D ಪುಸ್ತಕದ ಆಕಾರಗಳು (Floating Book Shapes) */}
+        {Array.from({ length: 6 }).map((_, i) => {
+          const size = Math.random() * 40 + 20; // 20px to 60px
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const duration = Math.random() * 10 + 10;
+          const rotate = Math.random() * 360;
+          
+          return (
+            <motion.div
+              key={`book-${i}`}
+              animate={{ 
+                y: [0, -40, 0],
+                rotate: [rotate, rotate + 45, rotate],
+                opacity: [0.05, 0.15, 0.05]
+              }}
+              transition={{ 
+                duration: duration, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: Math.random() * 2
+              }}
+              className="absolute border-2 border-blue-500/20 rounded-md backdrop-blur-sm"
+              style={{ 
+                width: size, 
+                height: size * 1.3, // ಪುಸ್ತಕದ ಆಕಾರ
+                left: `${left}%`, 
+                top: `${top}%`,
+                perspective: '1000px'
+              }}
+            />
+          );
+        })}
+
+        {/* 3. ಮಿನುಗುವ ನೀಲಿ ಬೆಳಕು (Glowing Blue Spot) */}
+        <motion.div 
+          animate={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.2, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-1/4 w-64 h-64 bg-blue-600/20 rounded-full blur-[100px]"
+        />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mx-auto">
+      {/* === MAIN CONTENT === */}
+      <div className="relative z-10 w-full px-5 sm:px-6">
         
-        {/* Education Card */}
-        <div className="glass-card p-6 sm:p-8 rounded-3xl w-full text-left flex flex-col border border-blue-500/10 hover:border-blue-500/30 transition-all">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 border border-blue-500/30">
-              <GraduationCap size={24} />
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">Education & Certifications</h2>
+          <p className="text-blue-500 font-medium text-lg">My Academic Background</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mx-auto">
+          
+          {/* Education Card */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl w-full text-left flex flex-col border border-blue-500/10 hover:border-blue-500/30 transition-all bg-[#0a1128]/60 backdrop-blur-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                <GraduationCap size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-white">Education</h3>
             </div>
-            <h3 className="text-xl font-bold text-white">Education</h3>
+
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-lg font-semibold text-white">Bachelor of Computer Application (BCA)</h4>
+                <p className="text-sm text-gray-400 mt-1">Annamalai University (Distance Education, Karasagod, Kerala)</p>
+                <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-blue-400">
+                  <span className="flex items-center gap-1"><Calendar size={12} /> Aug 2021 - Oct 2024</span>
+                  <span className="flex items-center gap-1"><Award size={12} /> Grade: A</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/5">
+                <h4 className="text-lg font-semibold text-white">Digital Marketing</h4>
+                <p className="text-sm text-gray-400 mt-1">Inspire Computer Education</p>
+                <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-blue-400">
+                  <span className="flex items-center gap-1"><Calendar size={12} /> Jan 2025 - Jul 2025</span>
+                  <span className="flex items-center gap-1"><Award size={12} /> Grade: A</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-6">
+          {/* Certifications Card */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl w-full text-left flex flex-col border border-green-500/10 hover:border-green-500/30 transition-all bg-[#0a1128]/60 backdrop-blur-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                <Award size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-white">Certifications</h3>
+            </div>
+
             <div>
-              <h4 className="text-lg font-semibold text-white">Bachelor of Computer Application (BCA)</h4>
-              <p className="text-sm text-gray-400 mt-1">Annamalai University (Distance Education, Karasagod, Kerala)</p>
-              <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-blue-400">
-                <span className="flex items-center gap-1"><Calendar size={12} /> Aug 2021 - Oct 2024</span>
-                <span className="flex items-center gap-1"><Award size={12} /> Grade: A</span>
+              <h4 className="text-lg font-semibold text-white">AI Powered Performance Marketing Mastery</h4>
+              <p className="text-sm text-gray-400 mt-1">Entri Software Private Limited</p>
+              <div className="flex items-center gap-4 mt-2 text-xs text-green-400 mb-4">
+                <span className="flex items-center gap-1"><Calendar size={12} /> Sep 2026 - Present</span>
               </div>
-            </div>
-
-            <div className="pt-4 border-t border-white/5">
-              <h4 className="text-lg font-semibold text-white">Digital Marketing</h4>
-              <p className="text-sm text-gray-400 mt-1">Inspire Computer Education</p>
-              <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-blue-400">
-                <span className="flex items-center gap-1"><Calendar size={12} /> Jan 2025 - Jul 2025</span>
-                <span className="flex items-center gap-1"><Award size={12} /> Grade: A</span>
-              </div>
+              
+              <ul className="text-sm text-gray-500 list-disc list-inside space-y-2">
+                <li>Advanced training in campaign strategy, funnel planning, audience targeting and conversion optimization.</li>
+                <li>Hands-on practice running paid ad campaigns across multiple advertising platforms.</li>
+                <li>In-depth study of market research, competitive analysis and consumer behavior.</li>
+              </ul>
             </div>
           </div>
+
         </div>
-
-        {/* Certifications Card */}
-        <div className="glass-card p-6 sm:p-8 rounded-3xl w-full text-left flex flex-col border border-green-500/10 hover:border-green-500/30 transition-all">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 border border-green-500/30">
-              <Award size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-white">Certifications</h3>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold text-white">AI Powered Performance Marketing Mastery</h4>
-            <p className="text-sm text-gray-400 mt-1">Entri Software Private Limited</p>
-            <div className="flex items-center gap-4 mt-2 text-xs text-green-400 mb-4">
-              <span className="flex items-center gap-1"><Calendar size={12} /> Sep 2026 - Present</span>
-            </div>
-            
-            <ul className="text-sm text-gray-500 list-disc list-inside space-y-2">
-              <li>Advanced training in campaign strategy, funnel planning, audience targeting and conversion optimization.</li>
-              <li>Hands-on practice running paid ad campaigns across multiple advertising platforms.</li>
-              <li>In-depth study of market research, competitive analysis and consumer behavior.</li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </motion.section>
   );
