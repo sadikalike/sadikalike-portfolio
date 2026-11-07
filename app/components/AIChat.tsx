@@ -16,7 +16,6 @@ export default function AIChat() {
 
   // ಪ್ರತಿ 10 ಸೆಕೆಂಡುಗಳಿಗೆ ಒಮ್ಮೆ ನೋಟಿಫಿಕೇಶನ್ ಬಂದು ಹೋಗುವಂತೆ ಮಾಡುವ ಲಾಜಿಕ್
   useEffect(() => {
-    // ಚಾಟ್ ತೆರೆದಿದ್ದರೆ ನೋಟಿಫಿಕೇಶನ್ ತೋರಿಸಬೇಡ
     if (isOpen) {
       setShowNotification(false);
       return;
@@ -24,13 +23,10 @@ export default function AIChat() {
 
     const interval = setInterval(() => {
       setShowNotification(true);
-      
-      // 3 ಸೆಕೆಂಡುಗಳ ನಂತರ ನೋಟಿಫಿಕೇಶನ್ ಮರೆಯಾಗುತ್ತದೆ
       setTimeout(() => {
         setShowNotification(false);
       }, 3000);
-      
-    }, 10000); // 10000ms = 10 ಸೆಕೆಂಡುಗಳು
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [isOpen]);
@@ -55,6 +51,7 @@ export default function AIChat() {
 
       const data = await response.json();
       
+      // ಸ್ವಲ್ಪ ವಿಳಂಬದ ನಂತರ ಉತ್ತರವನ್ನು ತೋರಿಸುವುದು
       setTimeout(() => {
         setMessages((prev) => [...prev, { role: "assistant", content: data.content }]);
         setIsLoading(false);

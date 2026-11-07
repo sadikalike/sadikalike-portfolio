@@ -4,114 +4,70 @@ Role: Performance Marketer & Website Developer (MERN Stack)
 Location: Mangaluru, India
 Email: sadikalike7@gmail.com
 Phone: +91 8217436350
-LinkedIn: https://www.linkedin.com/in/-sadik-performance-marketer
-GitHub: https://github.com/sadikalike
-Instagram (Agency): https://www.instagram.com/growzy.digital
 
-Education:
-1. Bachelor of Computer Application (BCA) from Annamalai University (Distance Education, Karasagod, Kerala) | Aug 2021 - Oct 2024 | Grade: A
-2. Digital Marketing from Inspire Computer Education | Jan 2025 - Jul 2025 | Grade: A
-
-Certifications:
-AI Powered Performance Marketing Mastery from Entri Software Private Limited | Sep 2026 - Present
-- Advanced training in campaign strategy, funnel planning, audience targeting and conversion optimization.
-- Hands-on practice running paid ad campaigns across multiple advertising platforms.
-- In-depth study of market research, competitive analysis and consumer behavior.
-
-About:
-I am a Performance Marketer with a background in Web Development and Digital Marketing. I have hands-on experience in digital marketing, website development, and business promotion. My main interest is performance marketing, where I focus on understanding businesses, researching competitors, identifying target audiences, and planning advertising campaigns.
-
-Skills:
-- Paid Media: Meta Ads, Google Ads, Snapchat Ads, TikTok Ads, LinkedIn Ads, SEM, Media Buying.
-- Performance Marketing: Lead Generation, Customer Acquisition, Conversion Optimization, A/B Testing, Audience Targeting, Funnel Strategy.
-- Research & Analytics: Competitive Intelligence, Market Research, Keyword Research, Search Volume Analysis, Consumer Behavior.
-- Tracking & Reporting: GA4, Meta Pixel, Google Tag Manager, Conversion Tracking, UTM Tagging, KPI Reporting (ROAS, CPA, CTR, CPL).
-- Web & Design: HTML, CSS, JavaScript, React, Next.js, Node.js, WordPress, Figma, Canva.
-- AI Tools: ChatGPT, Claude AI, Perplexity AI, Prompt Engineering.
-
-Experience:
-1. Marketing Team Member at Skillon English Academy (Nov 2025 - Present). Built the academy's website and handle its marketing, support digital campaigns, lead generation.
-2. Founder & Freelance Digital Marketer at Growzy Digital (2024 - Present). Handle multiple freelance clients end to end: website development, branding, competitor research, Meta/Google Ads campaigns.
-
-Projects:
-1. Subhamastu Cafe (subhamastucafe.in): Website dev & Meta/Google Ads for franchise leads.
-2. Indrabhavya (indrabhayaquaratna.com): Website & targeted lead gen campaigns.
-3. Skillon Academy (skillonenglishacademy.com): Website development & marketing for an English academy.
-4. Malnad Interiors (malnadinteriors.co.in): Website design & data-driven Google Ads.
-
-Marketing Knowledge:
-- Focus on ROAS (Return on Ad Spend) and lowering CPA (Cost Per Acquisition).
-- Always research competitors and target audience before running ads.
-- Use A/B testing to find the best performing creatives.
-- Track everything using GA4 and Meta Pixel.
-
-Personal/Fun Facts:
-- Sadik's brothers are Souhar, Shafeek, and Shaheem.
-- Sadik's cousins are Irfan, Irshad, Ihsan, Rafeek, and Shakeeb.
-- When asked about his best friend, he considers his close friends and family as his best friends.
+Education: BCA (Annamalai University), Digital Marketing (Inspire Computer Education).
+Certifications: AI Powered Performance Marketing Mastery (Entri Software).
+Skills: Meta Ads, Google Ads, SEO, React, Next.js, Tailwind CSS, GA4, Meta Pixel.
+Experience: Marketing at Skillon Academy, Founder of Growzy Digital (Freelance).
+Projects: Subhamastu Cafe, Indrabhavya, Skillon Academy, Malnad Interiors.
 `;
 
 export function getAIResponse(userInput: string): string {
-  const input = userInput.toLowerCase();
+  const input = userInput.toLowerCase().trim();
 
-  // Education
-  if (input.includes("education") || input.includes("study") || input.includes("college") || input.includes("degree") || input.includes("bca")) {
-    return "Sadik holds a Bachelor of Computer Application (BCA) from Annamalai University (Aug 2021 - Oct 2024) with Grade A, and a Digital Marketing certification from Inspire Computer Education (Jan 2025 - Jul 2025) with Grade A.";
+  // Greetings
+  if (input.match(/^(hi|hello|hey|namaste|namaskara)/)) {
+    return "Hello! I'm Sadik's AI assistant. How can I help you today? You can ask me about his skills, projects, experience, or general marketing questions.";
   }
 
-  // Certification
+  // Education & Certifications
+  if (input.includes("education") || input.includes("study") || input.includes("college") || input.includes("bca")) {
+    return "Sadik holds a Bachelor of Computer Application (BCA) from Annamalai University (2021-2024) with Grade A. He also completed a Digital Marketing course at Inspire Computer Education.";
+  }
+
   if (input.includes("certification") || input.includes("certificate") || input.includes("course")) {
-    return "Sadik has completed the 'AI Powered Performance Marketing Mastery' certification from Entri Software Private Limited (Sep 2026 - Present). It covers campaign strategy, funnel planning, audience targeting, and conversion optimization.";
+    return "Sadik completed the 'AI Powered Performance Marketing Mastery' certification from Entri Software Private Limited. It covers campaign strategy, funnel planning, and conversion optimization.";
   }
 
-  // Brothers
+  // Family & Personal
   if (input.includes("brother") || input.includes("souhar") || input.includes("shafeek") || input.includes("shaheem")) {
     return "Sadik's brothers are Souhar, Shafeek, and Shaheem.";
   }
 
-  // Cousins
   if (input.includes("cousin") || input.includes("irfan") || input.includes("irshad") || input.includes("ihsan") || input.includes("rafeek") || input.includes("shakeeb")) {
     return "Sadik's cousins are Irfan, Irshad, Ihsan, Rafeek, and Shakeeb.";
   }
 
-  // Name/About
-  if (input.includes("who") || input.includes("about") || input.includes("sadik")) {
-    return "Muhammad Sadik P is a Performance Marketer and Website Developer based in Mangaluru. He specializes in running data-driven ad campaigns (Meta/Google) and building high-converting landing pages using React and Next.js.";
-  }
-  
-  // Skills
-  if (input.includes("skill") || input.includes("tools") || input.includes("what can")) {
-    return "Sadik is skilled in Meta Ads, Google Ads, GA4, SEO, React, Next.js, and Tailwind CSS. He also uses AI tools like ChatGPT to improve his marketing strategies and tracking.";
+  // Contact
+  if (input.includes("hire") || input.includes("contact") || input.includes("email") || input.includes("phone") || input.includes("call")) {
+    return "You can reach Sadik at sadikalike7@gmail.com or call +91 8217436350. He is available for freelance projects!";
   }
 
-  // Experience
-  if (input.includes("experience") || input.includes("work") || input.includes("job")) {
-    return "He is currently a Marketing Team Member at Skillon English Academy and the Founder of Growzy Digital (a freelance agency). He has handled end-to-end marketing and web development for clients like Subhamastu Cafe and Malnad Interiors.";
+  // Marketing Questions
+  if (input.includes("marketing") || input.includes("ads") || input.includes("roas") || input.includes("cpa")) {
+    return "For successful performance marketing, focus on: 1) Identifying your target audience, 2) Researching competitors, 3) Running A/B tests on Meta and Google Ads, and 4) Tracking ROAS & CPA closely to optimize your budget.";
   }
 
   // Projects
   if (input.includes("project") || input.includes("portfolio") || input.includes("client")) {
-    return "His featured projects include Subhamastu Cafe (franchise lead gen), Indrabhavya (real estate leads), Skillon Academy (education website), and Malnad Interiors (interior design ads).";
+    return "Sadik has worked on several projects including Subhamastu Cafe (franchise leads), Indrabhavya (real estate leads), Skillon Academy (education website), and Malnad Interiors (interior design ads).";
   }
 
-  // Contact
-  if (input.includes("hire") || input.includes("contact") || input.includes("email") || input.includes("phone")) {
-    return "You can contact Sadik via email at sadikalike7@gmail.com or call him at +91 8217436350. He is currently available for freelance projects!";
+  // Skills
+  if (input.includes("skill") || input.includes("tools") || input.includes("what can")) {
+    return "Sadik's core skills include Meta Ads, Google Ads, SEO, GA4, React, Next.js, and Tailwind CSS. He also uses AI tools like ChatGPT to enhance his marketing strategies.";
   }
 
-  // Marketing
-  if (input.includes("marketing") || input.includes("ads") || input.includes("roas") || input.includes("cpa")) {
-    return "For performance marketing, focus on identifying your target audience, researching competitors, and running A/B tests on Meta and Google Ads. Track your ROAS and CPA closely to optimize your budget!";
-  }
-  
-  if (input.includes("website") || input.includes("developer") || input.includes("mern")) {
-    return "As a MERN stack developer, Sadik builds fast, scalable, and responsive web applications using React, Next.js, and Node.js. He ensures the website is optimized for conversions.";
+  // Experience
+  if (input.includes("experience") || input.includes("work") || input.includes("job")) {
+    return "Currently, Sadik is a Marketing Team Member at Skillon English Academy and the Founder of Growzy Digital (a freelance agency). He has 1+ years of hands-on experience in digital marketing and web development.";
   }
 
-  // Best Friend
-  if (input.includes("best friend") || input.includes("friend")) {
-    return "Sadik considers his close friends and family as his best friends. He values relationships and is always there for the people he cares about!";
+  // Who is Sadik
+  if (input.includes("who is") || input.includes("about sadik") || input.includes("sadik")) {
+    return "Muhammad Sadik P is a Performance Marketer and Website Developer based in Mangaluru. He specializes in scaling businesses through data-driven ad campaigns and building high-converting landing pages using React and Next.js.";
   }
 
-  return "I'm Sadik's AI assistant. You can ask me about his skills, experience, projects, education, certifications, brothers, cousins, or general marketing doubts!";
+  // Default Response
+  return "I'm Sadik's AI assistant. I can answer questions about his skills, experience, projects, education, or general marketing doubts. Try asking: 'What are his skills?' or 'How to improve ROAS?'";
 }
