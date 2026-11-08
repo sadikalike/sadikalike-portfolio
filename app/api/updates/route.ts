@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/app/lib/db';
 import Update from '@/app/lib/models/Update';
 
-// === ಇಲ್ಲಿ dynamic = 'force-dynamic' ಬೇಡ ===
-// cacheComponents ಆನ್ ಇದ್ದಾಗ, GET ರೂಟ್‌ಗಳು ತಾನಾಗಿಯೇ ಡೇಟಾಬೇಸ್ ಕ್ವೆರಿ ನಡೆಸಿದಾಗ ಡೈನಾಮಿಕ್ ಆಗುತ್ತವೆ.
+// ಇಲ್ಲಿ dynamic = 'force-dynamic' ಬೇಡ. cacheComponents ಆನ್ ಇದ್ದಾಗ ಅದು ಕೆಲಸ ಮಾಡುವುದಿಲ್ಲ.
 
 // GET: ಎಲ್ಲಾ ಅಪ್‌ಡೇಟ್‌ಗಳನ್ನು ಪಡೆಯಲು
 export async function GET() {
