@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowUpRight, Mail } from "lucide-react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 
-const links = ["About", "Experience", "Skills", "Projects", "Contact"];
+// "Updates" ಲಿಂಕ್ ಸೇರಿಸಲಾಗಿದೆ
+const links = ["About", "Experience", "Skills", "Projects", "Updates", "Contact"];
 
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/-sadik-performance-marketer", icon: FaLinkedin, external: true },
@@ -55,7 +56,7 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between h-14 pl-4 pr-1.5 md:pl-5 md:pr-2 gap-2">
           
-          {/* Logo: Full Name on both Mobile and Desktop */}
+          {/* Logo: Full Name */}
           <a href="/#home" className="font-bold tracking-tighter text-white whitespace-nowrap">
             <span className="text-[18px] md:text-xl lg:text-2xl">
               Muhammad Sadik P<span className="text-blue-500">.</span>
@@ -67,10 +68,18 @@ export default function Navbar() {
             {links.map((item) => {
               const id = item.toLowerCase();
               const isActive = active === id;
+              
+              // "Updates" ಗೆ ಪ್ರತ್ಯೇಕ ಲಿಂಕ್, ಉಳಿದವುಗಳಿಗೆ ಸ್ಕ್ರಾಲ್ ಲಿಂಕ್
+              // ಇಲ್ಲಿ ನೇರವಾಗಿ string ನೀಡಲಾಗಿದೆ, ಯಾವುದೇ condition ಇಲ್ಲ
+              let href = `/#${id}`;
+              if (id === "updates") {
+                href = "/updates";
+              }
+
               return (
                 <li key={item}>
                   <a
-                    href={`/#${id}`}
+                    href={href}
                     className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                       isActive ? "text-white" : "text-gray-400 hover:text-white"
                     }`}
@@ -91,7 +100,7 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-0.5 md:gap-2">
-            {/* Social icons (mobile + desktop) */}
+            {/* Social icons */}
             <div className="flex items-center gap-0.5 md:gap-1 md:mr-1">
               {socials.map((s) => {
                 const Icon = s.icon;
@@ -139,10 +148,17 @@ export default function Navbar() {
           >
             {links.map((item) => {
               const id = item.toLowerCase();
+              
+              // ಮೊಬೈಲ್‌ನಲ್ಲಿಯೂ ಅದೇ ಲಾಜಿಕ್
+              let href = `/#${id}`;
+              if (id === "updates") {
+                href = "/updates";
+              }
+
               return (
                 <a
                   key={item}
-                  href={`/#${id}`}
+                  href={href}
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-3 rounded-2xl text-base font-medium transition-colors ${
                     active === id
