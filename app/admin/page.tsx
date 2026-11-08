@@ -60,6 +60,11 @@ export default function Admin() {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // ಚಿತ್ರದ ಸೈಜ್ 1MB ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು
+      if (file.size > 1024 * 1024) {
+        alert("Image is too large. Please select an image under 1MB.");
+        return;
+      }
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result as string);
@@ -70,7 +75,10 @@ export default function Admin() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !content) return;
+    if (!title || !content) {
+      alert("Please fill in both title and content.");
+      return;
+    }
     setLoading(true);
 
     try {
@@ -84,21 +92,26 @@ export default function Admin() {
         }),
       });
 
-      if (res.ok) {
-        setTitle(""); setContent(""); setImage("");
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setTitle(""); 
+        setContent(""); 
+        setImage("");
         if (fileInputRef.current) fileInputRef.current.value = "";
         loadUpdates();
         alert("Posted Successfully!");
+      } else {
+        alert("Failed to post: " + (data.error || "Unknown error"));
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to post update.");
+      alert("Something went wrong. Check the console.");
     } finally {
       setLoading(false);
     }
   };
 
-  // === ಇಲ್ಲಿ ಡೇಟಾಬೇಸ್‌ನಿಂದ ಡಿಲೀಟ್ ಮಾಡುವ ಲಾಜಿಕ್ ಇದೆ ===
   const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this update?")) {
       try {
@@ -107,7 +120,7 @@ export default function Admin() {
         });
 
         if (res.ok) {
-          loadUpdates(); // ಡಿಲೀಟ್ ಆದ ನಂತರ ಪಟ್ಟಿಯನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ
+          loadUpdates();
         } else {
           alert("Failed to delete from database.");
         }
