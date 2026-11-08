@@ -78,14 +78,18 @@ export default function Hero() {
             {/* Rotating Border */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-green-500 to-blue-500 animate-[spin_5s_linear_infinite] opacity-40 blur-[2px]"></div>
             
-            {/* Image */}
-            <div className="absolute inset-[3px] rounded-full overflow-hidden border-2 border-[#030712] bg-[#030712] z-10">
+            {/* Image with Dark Filter & Overlay to match theme */}
+            <div className="absolute inset-[3px] rounded-full overflow-hidden border-2 border-[#030712] bg-[#030712] z-10 relative">
               <img 
                 src="/sadik.png" 
                 alt="Muhammad Sadik P" 
                 className="w-full h-full object-cover object-top scale-110" 
-                style={{ filter: "contrast(1.1) brightness(1.05)" }} 
+                style={{ 
+                  filter: "contrast(1.05) brightness(0.8) saturate(0.85)", 
+                }} 
               />
+              {/* Dark Blue Overlay */}
+              <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply pointer-events-none"></div>
             </div>
             
             {/* Glow */}

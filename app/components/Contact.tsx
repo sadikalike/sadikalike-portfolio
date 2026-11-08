@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, Zap, MapPin } from "lucide-react";
 
 const fadeUp = {
@@ -8,6 +9,40 @@ const fadeUp = {
 };
 
 export default function Contact() {
+  const [sparks, setSparks] = useState<{ id: number; x: number; y: number }[]>([]);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const sparkIdRef = useRef(0);
+
+  // ಸ್ಪಾರ್ಕ್ ಸೃಷ್ಟಿಸುವ ಫಂಕ್ಷನ್
+  const createSpark = () => {
+    const newSparks = Array.from({ length: 3 }).map(() => ({
+      id: sparkIdRef.current++,
+      x: (Math.random() - 0.5) * 160, // ಸುತ್ತಲೂ ಹರಡಲು (Left/Right)
+      y: (Math.random() - 0.5) * 160, // ಸುತ್ತಲೂ ಹರಡಲು (Up/Down)
+    }));
+
+    setSparks((prev) => [...prev, ...newSparks]);
+
+    // 1 ಸೆಕೆಂಡ್ ನಂತರ ಸ್ಪಾರ್ಕ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕುವುದು
+    setTimeout(() => {
+      setSparks((prev) => prev.filter((s) => !newSparks.find((ns) => ns.id === s.id)));
+    }, 1000);
+  };
+
+  // ಒತ್ತಿ ಹಿಡಿದಾಗ (Press & Hold) ನಿರಂತರವಾಗಿ ಸ್ಪಾರ್ಕ್ ಬರಲು
+  const handlePressStart = () => {
+    createSpark(); // ಮೊದಲ ಸ್ಪಾರ್ಕ್ ತಕ್ಷಣ
+    intervalRef.current = setInterval(createSpark, 100); // ಪ್ರತಿ 0.1 ಸೆಕೆಂಡಿಗೆ
+  };
+
+  // ಬೆರಳನ್ನು ಎತ್ತಿದಾಗ (Release) ನಿಲ್ಲಿಸುವುದು
+  const handlePressEnd = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
   return (
     <motion.section 
       id="contact" 
@@ -49,9 +84,39 @@ export default function Contact() {
       {/* === MAIN CONTENT === */}
       <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-6 py-20 sm:py-24 text-center">
         
-        {/* Icon */}
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/30 mb-6 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-          <Zap className="text-blue-400" size={32} />
+        {/* Interactive Spark Icon */}
+        <div className="relative inline-flex items-center justify-center mb-6">
+          
+          {/* Spark Particles - ಒತ್ತಿ ಹಿಡಿದಾಗ ನಿರಂತರವಾಗಿ ಬರುತ್ತವೆ */}
+          <AnimatePresence>
+            {sparks.map((spark) => (
+              <motion.span
+                key={spark.id}
+                initial={{ opacity: 1, scale: 0, x: 0, y: 0 }}
+                animate={{ 
+                  opacity: 0, 
+                  scale: 1.5 + Math.random(), // ಸೈಜ್ ರಾಂಡಮ್ ಆಗಿ ಬದಲಾಗುತ್ತದೆ
+                  x: spark.x, 
+                  y: spark.y 
+                }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="absolute w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,1)] pointer-events-none"
+              />
+            ))}
+          </AnimatePresence>
+
+          {/* Icon Button */}
+          <motion.div 
+            onPointerDown={handlePressStart} // ಮೊಬೈಲ್/ಮೌಸ್ ಒತ್ತಿದಾಗ
+            onPointerUp={handlePressEnd}     // ಬಿಟ್ಟಾಗ
+            onPointerLeave={handlePressEnd}  // ಹೊರಗೆ ಹೋದಾಗ
+            whileTap={{ scale: 0.85 }} 
+            whileHover={{ scale: 1.1 }}
+            className="group cursor-pointer inline-flex items-center justify-center w-16 h-16 rounded-full border border-blue-500/30 bg-transparent relative z-10 select-none"
+          >
+            <Zap className="text-blue-400 group-hover:text-yellow-400 group-active:text-yellow-400 transition-colors duration-300" size={32} />
+          </motion.div>
         </div>
 
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
