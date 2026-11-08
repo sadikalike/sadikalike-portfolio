@@ -4,12 +4,13 @@ Role: Performance Marketer & Website Developer (MERN Stack)
 Location: Mangaluru, India
 Email: sadikalike7@gmail.com
 Phone: +91 8217436350
-Education: BCA (Annamalai University, 2021-2024), Digital Marketing (Inspire Computer Education, 2025).
-Certifications: AI Powered Performance Marketing Mastery (Entri Software, 2026).
-Skills: Meta Ads, Google Ads, SEO, GA4, React, Next.js, Tailwind CSS, Node.js, AI Tools.
-Experience: Marketing Team Member at Skillon English Academy, Founder of Growzy Digital.
+Education: BCA (Annamalai University), Digital Marketing (Inspire Computer Education).
+Certifications: AI Powered Performance Marketing Mastery (Entri Software).
+Skills: Meta Ads, Google Ads, SEO, React, Next.js, Tailwind CSS, GA4, Meta Pixel.
+Experience: Marketing at Skillon Academy, Founder of Growzy Digital (Freelance).
 Projects: Subhamastu Cafe, Indrabhavya, Skillon Academy, Malnad Interiors.
 Family: Brothers (Souhar, Shafeek, Shaheem), Cousins (Irfan, Irshad, Ihsan, Rafeek, Shakeeb).
+Best Friend: Sugu (Suhail) - He is like a brother to Sadik.
 `;
 
 export function getAIResponse(userInput: string): string {
@@ -20,7 +21,12 @@ export function getAIResponse(userInput: string): string {
     return "Hello! I'm Sadik's AI assistant. How can I help you today? You can ask me about his skills, projects, experience, or general marketing doubts.";
   }
 
-  // 2. General Knowledge (ಸಾಮಾನ್ಯ ಜ್ಞಾನ)
+  // 2. Best Friend Sugu (ಸುಗು / ಸುಹೈಲ್)
+  if (input.includes("sugu") || input.includes("suhail") || input.includes("best friend")) {
+    return "Sugu (Suhail) is Sadik's best friend. Sadik considers him like a brother. He is a very close and important person in Sadik's life.";
+  }
+
+  // 3. General Knowledge (ಸಾಮಾನ್ಯ ಜ್ಞಾನ)
   if (input.includes("what is marketing") || input.includes("marketing ಅಂದ್ರೆ")) {
     return "Marketing is the process of promoting and selling products or services. It includes market research, advertising, and customer relationship management.";
   }
@@ -37,7 +43,7 @@ export function getAIResponse(userInput: string): string {
     return "CPA (Cost Per Acquisition) is the cost of acquiring a new customer. It is calculated by dividing the total campaign cost by the number of conversions.";
   }
 
-  // 3. Sadik's Information
+  // 4. Sadik's Information
   if (input.includes("who is sadik") || input.includes("about sadik") || input.includes("sadik")) {
     return "Muhammad Sadik P is a Performance Marketer and Website Developer based in Mangaluru. He specializes in scaling businesses through data-driven ad campaigns and building high-converting landing pages using React and Next.js.";
   }
@@ -60,17 +66,14 @@ export function getAIResponse(userInput: string): string {
     return "You can reach Sadik at sadikalike7@gmail.com or call +91 8217436350. He is available for freelance projects!";
   }
 
-  // 4. Family
+  // 5. Family
   if (input.includes("brother") || input.includes("souhar")) {
     return "Sadik's brothers are Souhar, Shafeek, and Shaheem.";
   }
   if (input.includes("cousin") || input.includes("irfan")) {
     return "Sadik's cousins are Irfan, Irshad, Ihsan, Rafeek, and Shakeeb.";
   }
-  if (input.includes("best friend") || input.includes("friend")) {
-    return "Sadik considers his close friends and family as his best friends!";
-  }
 
-  // 5. Default
+  // 6. Default
   return "I'm Sadik's AI assistant. I can answer questions about his skills, experience, projects, education, or general marketing doubts. Try asking: 'What are his skills?' or 'What is ROAS?'";
 }
