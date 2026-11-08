@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/app/lib/db';
 import Update from '@/app/lib/models/Update';
 
+// === ಇದು ಮುಖ್ಯ! ===
+// Vercel ನಲ್ಲಿ API ಕ್ಯಾಶೆ ಆಗದಂತೆ ತಡೆಯುತ್ತದೆ. ಪ್ರತಿ ಬಾರಿಯೂ ಹೊಸ ಡೇಟಾ ಸಿಗುತ್ತದೆ.
+export const dynamic = 'force-dynamic';
+
 // GET: ಎಲ್ಲಾ ಅಪ್‌ಡೇಟ್‌ಗಳನ್ನು ಪಡೆಯಲು
 export async function GET() {
   await dbConnect();
